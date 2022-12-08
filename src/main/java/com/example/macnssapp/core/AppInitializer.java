@@ -1,4 +1,4 @@
-package com.example.macnssapp.conf;
+package com.example.macnssapp.core;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

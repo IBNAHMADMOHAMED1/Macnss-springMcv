@@ -1,4 +1,4 @@
-package com.example.macnssapp.conf;
+package com.example.macnssapp.core;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

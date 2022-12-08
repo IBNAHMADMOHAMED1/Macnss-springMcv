@@ -2,11 +2,11 @@ package com.example.macnssapp.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -20,15 +20,14 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:persistence.properties")
-@ComponentScan
-        ({ "com.example.macnssapp" })
-public class PersistenceJPAConfig {
+@EnableJpaRepositories(basePackages = "ma.macnss.Dao")
+@PropertySource("classpath:database.properties")
+public class PersistenceJpaConfig {
 
     @Autowired
     private Environment environment;
 
-    public PersistenceJPAConfig() {
+    public PersistenceJpaConfig() {
         super();
     }
 
@@ -47,7 +46,7 @@ public class PersistenceJPAConfig {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] {"ma.macnss.repositories"});
+        em.setPackagesToScan(new String[] {"ma.macnss.entities"});
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
